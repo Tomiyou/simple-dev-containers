@@ -48,7 +48,7 @@ fi
 SOURCE_IMAGE="$2"
 
 # Build docker image
-TMP_DOCKERFILE="/tmp/run_docker_$(date +%s)"
+TMP_DOCKERFILE="/tmp/simple_docker_run_$(date +%s)"
 touch "$TMP_DOCKERFILE"
 
 echo "FROM $SOURCE_IMAGE" >> "$TMP_DOCKERFILE"
