@@ -53,7 +53,9 @@ touch "$TMP_DOCKERFILE"
 
 echo "FROM $SOURCE_IMAGE" >> "$TMP_DOCKERFILE"
 echo "RUN apt-get update" >> "$TMP_DOCKERFILE"
-echo "RUN apt-get install git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison gcc llvm clang curl wget" >> "$TMP_DOCKERFILE"
+echo "RUN apt-get install -y git fakeroot build-essential ncurses-dev \
+xz-utils libssl-dev bc flex libelf-dev bison gcc llvm clang curl \
+wget vim" >> "$TMP_DOCKERFILE"
 echo "RUN useradd --create-home --shell /bin/bash $CURRENT_USER" >> "$TMP_DOCKERFILE"
 echo "USER $CURRENT_USER" >> "$TMP_DOCKERFILE"
 echo "WORKDIR /home/$CURRENT_USER" >> "$TMP_DOCKERFILE"
