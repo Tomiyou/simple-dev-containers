@@ -2,8 +2,6 @@
 get_container_image_name "${args[container_name]}"
 USER="${args[user]}"
 
-echo "Given user $USER"
-
 # If a container with the given name exists, start it instead
 EXISTING_CONTAINER=$(docker ps -aqf "name=$CONTAINER_NAME")
 if [[ $EXISTING_CONTAINER ]]; then
