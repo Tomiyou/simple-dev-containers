@@ -6,6 +6,3 @@
 ## Feel free to empty (but not delete) this file.
 
 CURRENT_USER="$(whoami)"
-LOCAL_CACHE="$HOME/.local/share/simple_docker_run"
-
-mkdir -p "$LOCAL_CACHE"

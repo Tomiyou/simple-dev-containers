@@ -312,30 +312,6 @@ inspect_args() {
 }
 
 # :command.user_lib
-# src/lib/add_container_to_cache.sh
-
-function add_container_to_cache {
-  echo "$1" >> "$LOCAL_CACHE/container_cache"
-}
-
-# src/lib/add_image_to_cache.sh
-
-function add_image_to_cache {
-  echo "$1" >> "$LOCAL_CACHE/image_cache"
-}
-
-# src/lib/remove_container_from_cache.sh
-
-function remove_container_from_cache {
-  sed -i "/$1/d" "$LOCAL_CACHE/container_cache"
-}
-
-# src/lib/remove_image_from_cache.sh
-
-function remove_image_from_cache {
-  sed -i "/$1/d" "$LOCAL_CACHE/image_cache"
-}
-
 # src/lib/send_completions.sh
 send_completions() {
   echo $'# simple-docker-run completion                             -*- shell-script -*-'
@@ -368,6 +344,10 @@ send_completions() {
   echo $'  local compline="${compwords[*]}"'
   echo $''
   echo $'  case "$compline" in'
+  echo $'    \'completions\'*)'
+  echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-docker-run_completions_filter "--help -h")" -- "$cur" )'
+  echo $'      ;;'
+  echo $''
   echo $'    \'uninstall\'*)'
   echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-docker-run_completions_filter "--help -h")" -- "$cur" )'
   echo $'      ;;'
@@ -381,11 +361,11 @@ send_completions() {
   echo $'      ;;'
   echo $''
   echo $'    \'run\'*)'
-  echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-docker-run_completions_filter "--help -h")" -- "$cur" )'
+  echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-docker-run_completions_filter "$(docker ps -a --format \'{{.Names}}\' 2> /dev/null) --help -h")" -- "$cur" )'
   echo $'      ;;'
   echo $''
   echo $'    *)'
-  echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-docker-run_completions_filter "--help --version -h -v create remove run uninstall")" -- "$cur" )'
+  echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-docker-run_completions_filter "--help --version -h -v completions create remove run uninstall")" -- "$cur" )'
   echo $'      ;;'
   echo $''
   echo $'  esac'
@@ -405,7 +385,7 @@ simple_docker_run_completions_command() {
   #
   # Users can now enable bash completion for this script by running:
   #
-  #   $ eval "$(cli completions)"
+  #   $ eval "$(simple-docker-run completions)"
   #
   send_completions
 
@@ -435,7 +415,6 @@ simple_docker_run_create_command() {
 
   # Build docker image
   docker build -t "$IMAGE_NAME" - < "$TMP_DOCKERFILE"
-  add_image_to_cache "$IMAGE_NAME"
 
   # Remove tepmporary Dockerfile
   rm "$TMP_DOCKERFILE"
@@ -444,7 +423,6 @@ simple_docker_run_create_command() {
   CURRENT_PATH="$(pwd)"
   CURRENT_DIRECTORY="$(basename $CURRENT_PATH)"
 
-  add_container_to_cache "$CONTAINER_NAME"
   docker run --name $CONTAINER_NAME --tty --interactive \
       -v "$CURRENT_PATH:/home/$CURRENT_USER/$CURRENT_DIRECTORY" \
       $IMAGE_NAME
@@ -483,11 +461,9 @@ simple_docker_run_remove_command() {
 
   echo "Removing container $CONTAINER_NAME"
   docker rm "$CONTAINER_NAME"
-  remove_container_from_cache "$CONTAINER_NAME"
 
   echo "Removing image $IMAGE_NAME"
   docker rmi "$IMAGE_NAME"
-  remove_image_from_cache "$IMAGE_NAME"
 
 }
 
@@ -890,9 +866,6 @@ initialize() {
   # src/initialize.sh
 
   CURRENT_USER="$(whoami)"
-  LOCAL_CACHE="$HOME/.local/share/simple_docker_run"
-
-  mkdir -p "$LOCAL_CACHE"
 
 }
 
