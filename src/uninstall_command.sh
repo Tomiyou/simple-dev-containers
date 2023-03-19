@@ -1,4 +1,6 @@
 
 # Script will remove itself
-# shred -u "$SCRIPT_PATH"
-ls "$SCRIPT_PATH"
+
+sed -i '/simple-docker-run completions/d' "$HOME/.bashrc"
+
+trap script_uninstall_itself EXIT
