@@ -6,3 +6,4 @@
 ## Feel free to empty (but not delete) this file.
 
 CURRENT_USER="$(whoami)"
+SCRIPT_PATH="$HOME/.local/bin/simple-docker-run"
