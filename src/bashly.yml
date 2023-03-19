@@ -3,6 +3,11 @@ help: Script for easily creating/running/cleaning docker containers
 version: 0.1.0
 
 commands:
+- name: completions
+  help: |-
+    Generate bash completions
+    Usage: eval "\$(simple-docker-run completions)"
+
 - name: create
   help: Create a docker contaner
 
@@ -26,6 +31,10 @@ commands:
     help: Name of the container to run
   - name: user
     help: Override default user (current user)
+
+  completions:
+  - $(docker ps -a --format '{{.Names}}' 2> /dev/null)
+  # - $(docker ps -a --format '{{.Names}}' | tr '\n' ' ')
 
   examples:
   - simple-docker-run run linux_builder
