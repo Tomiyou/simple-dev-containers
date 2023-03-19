@@ -19,6 +19,7 @@ echo "CMD bash -i" >> "$TMP_DOCKERFILE"
 
 # Build docker image
 docker build -t "$IMAGE_NAME" - < "$TMP_DOCKERFILE"
+add_image_to_cache "$IMAGE_NAME"
 
 # Remove tepmporary Dockerfile
 rm "$TMP_DOCKERFILE"
@@ -27,6 +28,7 @@ rm "$TMP_DOCKERFILE"
 CURRENT_PATH="$(pwd)"
 CURRENT_DIRECTORY="$(basename $CURRENT_PATH)"
 
+add_container_to_cache "$CONTAINER_NAME"
 docker run --name $CONTAINER_NAME --tty --interactive \
     -v "$CURRENT_PATH:/home/$CURRENT_USER/$CURRENT_DIRECTORY" \
     $IMAGE_NAME
