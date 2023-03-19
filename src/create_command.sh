@@ -1,6 +1,5 @@
 
-IMAGE_NAME="${args[container_name]}_image"
-CONTAINER_NAME="${args[container_name]}_container"
+get_container_image_name "${args[container_name]}"
 SOURCE_IMAGE="${args[source_image]}"
 
 # Create temporary Dockerfile
@@ -8,6 +7,7 @@ TMP_DOCKERFILE="/tmp/simple_docker_run_$(date +%s)"
 touch "$TMP_DOCKERFILE"
 
 echo "FROM $SOURCE_IMAGE" >> "$TMP_DOCKERFILE"
+echo "LABEL simple_docker_run='true'" >> "$TMP_DOCKERFILE"
 echo "RUN apt-get update" >> "$TMP_DOCKERFILE"
 echo "RUN apt-get install -y git fakeroot build-essential ncurses-dev \
 xz-utils libssl-dev bc flex libelf-dev bison gcc llvm clang curl \

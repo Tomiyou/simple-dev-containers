@@ -1,6 +1,5 @@
 
-IMAGE_NAME="${args[container_name]}_image"
-CONTAINER_NAME="${args[container_name]}_container"
+get_container_image_name "${args[container_name]}"
 
 echo "Removing container $CONTAINER_NAME"
 docker rm "$CONTAINER_NAME"

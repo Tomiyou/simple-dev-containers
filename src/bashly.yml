@@ -33,8 +33,7 @@ commands:
     help: Override default user (current user)
 
   completions:
-  - $(docker ps -a --format '{{.Names}}' 2> /dev/null)
-  # - $(docker ps -a --format '{{.Names}}' | tr '\n' ' ')
+  - $(docker ps -a --filter "label=simple_docker_run" --format '{{.Names}}' 2> /dev/null)
 
   examples:
   - simple-docker-run run linux_builder
@@ -47,6 +46,9 @@ commands:
   - name: container_name
     required: true
     help: Name of the container to remove
+
+  completions:
+  - $(docker ps -a --filter "label=simple_docker_run" --format '{{.Names}}' 2> /dev/null)
 
   examples:
   - simple-docker-run remove linux_builder

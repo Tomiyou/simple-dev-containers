@@ -312,6 +312,13 @@ inspect_args() {
 }
 
 # :command.user_lib
+# src/lib/get_container_image_name.sh
+
+function get_container_image_name {
+  IMAGE_NAME="${1}_image"
+  CONTAINER_NAME="${1}"
+}
+
 # src/lib/send_completions.sh
 send_completions() {
   echo $'# simple-docker-run completion                             -*- shell-script -*-'
@@ -357,11 +364,11 @@ send_completions() {
   echo $'      ;;'
   echo $''
   echo $'    \'remove\'*)'
-  echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-docker-run_completions_filter "--help -h")" -- "$cur" )'
+  echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-docker-run_completions_filter "$(docker ps -a --filter "label=simple_docker_run" --format \'{{.Names}}\' 2> /dev/null) --help -h")" -- "$cur" )'
   echo $'      ;;'
   echo $''
   echo $'    \'run\'*)'
-  echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-docker-run_completions_filter "$(docker ps -a --format \'{{.Names}}\' 2> /dev/null) --help -h")" -- "$cur" )'
+  echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-docker-run_completions_filter "$(docker ps -a --filter "label=simple_docker_run" --format \'{{.Names}}\' 2> /dev/null) --help -h")" -- "$cur" )'
   echo $'      ;;'
   echo $''
   echo $'    *)'
@@ -395,8 +402,7 @@ simple_docker_run_completions_command() {
 simple_docker_run_create_command() {
   # src/create_command.sh
 
-  IMAGE_NAME="${args[container_name]}_image"
-  CONTAINER_NAME="${args[container_name]}_container"
+  get_container_image_name "${args[container_name]}"
   SOURCE_IMAGE="${args[source_image]}"
 
   # Create temporary Dockerfile
@@ -404,6 +410,7 @@ simple_docker_run_create_command() {
   touch "$TMP_DOCKERFILE"
 
   echo "FROM $SOURCE_IMAGE" >> "$TMP_DOCKERFILE"
+  echo "LABEL simple_docker_run='true'" >> "$TMP_DOCKERFILE"
   echo "RUN apt-get update" >> "$TMP_DOCKERFILE"
   echo "RUN apt-get install -y git fakeroot build-essential ncurses-dev \
   xz-utils libssl-dev bc flex libelf-dev bison gcc llvm clang curl \
@@ -433,9 +440,10 @@ simple_docker_run_create_command() {
 simple_docker_run_run_command() {
   # src/run_command.sh
 
-  IMAGE_NAME="${args[container_name]}_image"
-  CONTAINER_NAME="${args[container_name]}_container"
+  get_container_image_name "${args[container_name]}"
   USER="${args[user]}"
+
+  echo "Given user $USER"
 
   # If a container with the given name exists, start it instead
   EXISTING_CONTAINER=$(docker ps -aqf "name=$CONTAINER_NAME")
@@ -456,8 +464,7 @@ simple_docker_run_run_command() {
 simple_docker_run_remove_command() {
   # src/remove_command.sh
 
-  IMAGE_NAME="${args[container_name]}_image"
-  CONTAINER_NAME="${args[container_name]}_container"
+  get_container_image_name "${args[container_name]}"
 
   echo "Removing container $CONTAINER_NAME"
   docker rm "$CONTAINER_NAME"
