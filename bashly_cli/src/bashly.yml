@@ -1,0 +1,49 @@
+name: simple-docker-run
+help: Script for easily creating/running/cleaning docker containers
+version: 0.1.0
+
+commands:
+- name: create
+  help: Create a docker contaner
+
+  args:
+  - name: container_name
+    required: true
+    help: Name of the created container
+  - name: source_image
+    required: true
+    help: Base image to use
+
+  examples:
+  - simple-docker-run create linux_builder debian:11
+
+- name: run
+  help: Run a created docker contaner interactively
+
+  args:
+  - name: container_name
+    required: true
+    help: Name of the container to run
+  - name: user
+    help: Override default user (current user)
+
+  examples:
+  - simple-docker-run run linux_builder
+  - simple-docker-run run linux_builder root
+
+- name: remove
+  help: Remove a created docker contaner
+
+  args:
+  - name: container_name
+    required: true
+    help: Name of the container to remove
+
+  examples:
+  - simple-docker-run remove linux_builder
+
+- name: uninstall
+  help: Uninstall this script
+
+  examples:
+  - simple-docker-run uninstall linux_builder
