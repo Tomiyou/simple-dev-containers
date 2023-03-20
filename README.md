@@ -19,6 +19,11 @@ simple-docker-run run $CONTAINER_NAME root
 ```
 simple-docker-run remove $CONTAINER_NAME
 ```
+- If you update source code, run the following commands to update the script:
+```
+bashly generate
+bashly generate --upgrade
+```
 
 ## Installation
 
