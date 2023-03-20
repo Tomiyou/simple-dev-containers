@@ -1,6 +1,8 @@
 #!/bin/bash
 
-SCRIPT_PATH="$HOME/.local/bin/simple-docker-run"
+SCRIPT_BASE_DIR="$HOME/.local/bin"
+mkdir -p "$SCRIPT_BASE_DIR"
+SCRIPT_PATH="$SCRIPT_BASE_DIR/simple-docker-run"
 
 # Download script and place it into local bin
 curl https://raw.githubusercontent.com/Tomiyou/docker_image_runner/master/simple-docker-run --output "$SCRIPT_PATH"
