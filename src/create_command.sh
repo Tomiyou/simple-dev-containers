@@ -6,17 +6,23 @@ SOURCE_IMAGE="${args[source_image]}"
 TMP_DOCKERFILE="/tmp/simple_docker_run_$(date +%s)"
 touch "$TMP_DOCKERFILE"
 
-echo "FROM $SOURCE_IMAGE" >> "$TMP_DOCKERFILE"
-# Add LABEL to image so we can easily tell, which containers are ours
-echo "LABEL simple_docker_run='true'" >> "$TMP_DOCKERFILE"
-echo "RUN apt-get update" >> "$TMP_DOCKERFILE"
-echo "RUN apt-get install -y git fakeroot build-essential ncurses-dev \
-xz-utils libssl-dev bc flex libelf-dev bison gcc llvm clang curl \
-wget vim" >> "$TMP_DOCKERFILE"
-echo "RUN useradd --create-home --shell /bin/bash $CURRENT_USER" >> "$TMP_DOCKERFILE"
-echo "USER $CURRENT_USER" >> "$TMP_DOCKERFILE"
-echo "WORKDIR /home/$CURRENT_USER" >> "$TMP_DOCKERFILE"
-echo "CMD bash -i" >> "$TMP_DOCKERFILE"
+cat > "$TMP_DOCKERFILE" <<- EOF
+FROM $SOURCE_IMAGE
+
+# Label tells us which containers were created by this script
+LABEL simple_docker_run='true'
+
+RUN apt-get update
+RUN apt-get install -y git fakeroot build-essential ncurses-dev \\
+    xz-utils libssl-dev bc flex libelf-dev bison gcc llvm clang curl \\
+    wget vim
+
+RUN useradd --create-home --shell /bin/bash $CURRENT_USER
+USER $CURRENT_USER
+WORKDIR /home/$CURRENT_USER
+
+CMD bash -i
+EOF
 
 # Build docker image
 docker build -t "$IMAGE_NAME" - < "$TMP_DOCKERFILE"
