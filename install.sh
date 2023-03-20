@@ -9,4 +9,4 @@ curl https://raw.githubusercontent.com/Tomiyou/docker_image_runner/master/simple
 chmod +x "$SCRIPT_PATH"
 
 # Add bash completion to .bashrc
-echo $'eval "$(simple-docker-run completions)"' >> "$HOME/.bashrc"
+echo $'which simple-docker-run &> /dev/null && eval "$(simple-docker-run completions)"' >> "$HOME/.bashrc"
