@@ -7,6 +7,7 @@ TMP_DOCKERFILE="/tmp/simple_docker_run_$(date +%s)"
 touch "$TMP_DOCKERFILE"
 
 echo "FROM $SOURCE_IMAGE" >> "$TMP_DOCKERFILE"
+# Add LABEL to image so we can easily tell, which containers are ours
 echo "LABEL simple_docker_run='true'" >> "$TMP_DOCKERFILE"
 echo "RUN apt-get update" >> "$TMP_DOCKERFILE"
 echo "RUN apt-get install -y git fakeroot build-essential ncurses-dev \
@@ -20,7 +21,7 @@ echo "CMD bash -i" >> "$TMP_DOCKERFILE"
 # Build docker image
 docker build -t "$IMAGE_NAME" - < "$TMP_DOCKERFILE"
 
-# Remove tepmporary Dockerfile
+# Remove temporary Dockerfile
 rm "$TMP_DOCKERFILE"
 
 # Create a docker container using the built image
