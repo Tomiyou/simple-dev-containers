@@ -18,6 +18,9 @@ commands:
   - name: source_image
     required: true
     help: Base image to use
+  - name: docker_recipe
+    required: false
+    help: Docker commands to add to the base recipe
 
   examples:
   - simple-docker-run create linux_builder debian:11
