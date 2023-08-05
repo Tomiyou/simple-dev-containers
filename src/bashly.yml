@@ -9,7 +9,7 @@ commands:
     Usage: eval "\$(simple-docker-run completions)"
 
 - name: create
-  help: Create a docker contaner
+  help: Create a docker container
 
   args:
   - name: container_name
@@ -23,7 +23,7 @@ commands:
   - simple-docker-run create linux_builder debian:11
 
 - name: run
-  help: Run a created docker contaner interactively
+  help: Run a created docker container interactively
 
   args:
   - name: container_name
@@ -40,7 +40,7 @@ commands:
   - simple-docker-run run linux_builder root
 
 - name: remove
-  help: Remove a created docker contaner
+  help: Remove a created docker container
 
   args:
   - name: container_name
