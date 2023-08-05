@@ -17,7 +17,7 @@ LABEL simple_docker_run='true'
 RUN apt-get update
 RUN apt-get install -y git fakeroot build-essential ncurses-dev \\
     xz-utils libssl-dev bc flex libelf-dev bison gcc llvm clang curl \\
-    wget vim
+    wget vim sudo
 
 EOF
 
@@ -26,7 +26,10 @@ EOF
 
 cat >> "$TMP_DOCKERFILE" <<- EOF
 
+# Add new user
 RUN useradd --create-home --shell /bin/bash $CURRENT_USER
+RUN echo "password123" | passwd $CURRENT_USER --stdin
+RUN usermod -aG sudo $CURRENT_USER
 USER $CURRENT_USER
 WORKDIR /home/$CURRENT_USER
 
