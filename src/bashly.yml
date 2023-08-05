@@ -25,6 +25,12 @@ commands:
   examples:
   - simple-docker-run create linux_builder debian:11
 
+- name: list
+  help: List available containers
+
+  examples:
+  - simple-docker-run list
+
 - name: run
   help: Run a created docker container interactively
 
