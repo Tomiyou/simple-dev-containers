@@ -66,4 +66,10 @@ commands:
   help: Uninstall this script
 
   examples:
-  - simple-docker-run uninstall linux_builder
+  - simple-docker-run uninstall
+
+- name: update
+  help: Update this script
+
+  examples:
+  - simple-docker-run update
