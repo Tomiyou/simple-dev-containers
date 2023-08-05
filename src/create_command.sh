@@ -27,7 +27,7 @@ EOF
 cat >> "$TMP_DOCKERFILE" <<- EOF
 
 # Add new user
-RUN useradd --create-home --shell /bin/bash $CURRENT_USER
+RUN useradd --create-home -u $CURRENT_UID --shell /bin/bash $CURRENT_USER
 RUN echo "$CURRENT_USER:password123" | chpasswd
 RUN usermod -aG sudo $CURRENT_USER
 USER $CURRENT_USER
