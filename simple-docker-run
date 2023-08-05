@@ -35,10 +35,9 @@ simple_docker_run_usage() {
 	# :command.usage_commands
 	printf "%s\n" "Commands:"
 	printf "  %s   Generate bash completions\n" "completions"
-	printf "  %s   Create a docker container\n" "create     "
-	printf "  %s   List available containers\n" "list       "
-	printf "  %s   Run a created docker container interactively\n" "run        "
-	printf "  %s   Remove a created docker container\n" "remove     "
+	printf "  %s   Create a docker contaner\n" "create     "
+	printf "  %s   Run a created docker contaner interactively\n" "run        "
+	printf "  %s   Remove a created docker contaner\n" "remove     "
 	printf "  %s   Uninstall this script\n" "uninstall  "
 	echo
 
@@ -92,17 +91,17 @@ simple_docker_run_completions_usage() {
 # :command.usage
 simple_docker_run_create_usage() {
 	if [[ -n $long_usage ]]; then
-		printf "simple-docker-run create - Create a docker container\n"
+		printf "simple-docker-run create - Create a docker contaner\n"
 		echo
 
 	else
-		printf "simple-docker-run create - Create a docker container\n"
+		printf "simple-docker-run create - Create a docker contaner\n"
 		echo
 
 	fi
 
 	printf "%s\n" "Usage:"
-	printf "  simple-docker-run create CONTAINER_NAME SOURCE_IMAGE [DOCKER_RECIPE]\n"
+	printf "  simple-docker-run create CONTAINER_NAME SOURCE_IMAGE\n"
 	printf "  simple-docker-run create --help | -h\n"
 	echo
 
@@ -128,11 +127,6 @@ simple_docker_run_create_usage() {
 		printf "    Base image to use\n"
 		echo
 
-		# :argument.usage
-		printf "  %s\n" "DOCKER_RECIPE"
-		printf "    Docker recipe to use\n"
-		echo
-
 		# :command.usage_examples
 		printf "%s\n" "Examples:"
 		printf "  simple-docker-run create linux_builder debian:11\n"
@@ -142,47 +136,13 @@ simple_docker_run_create_usage() {
 }
 
 # :command.usage
-simple_docker_run_list_usage() {
-	if [[ -n $long_usage ]]; then
-		printf "simple-docker-run list - List available containers\n"
-		echo
-
-	else
-		printf "simple-docker-run list - List available containers\n"
-		echo
-
-	fi
-
-	printf "%s\n" "Usage:"
-	printf "  simple-docker-run list\n"
-	printf "  simple-docker-run list --help | -h\n"
-	echo
-
-	# :command.long_usage
-	if [[ -n $long_usage ]]; then
-		printf "%s\n" "Options:"
-
-		# :command.usage_fixed_flags
-		printf "  %s\n" "--help, -h"
-		printf "    Show this help\n"
-		echo
-
-		# :command.usage_examples
-		printf "%s\n" "Examples:"
-		printf "  simple-docker-run list\n"
-		echo
-
-	fi
-}
-
-# :command.usage
 simple_docker_run_run_usage() {
 	if [[ -n $long_usage ]]; then
-		printf "simple-docker-run run - Run a created docker container interactively\n"
+		printf "simple-docker-run run - Run a created docker contaner interactively\n"
 		echo
 
 	else
-		printf "simple-docker-run run - Run a created docker container interactively\n"
+		printf "simple-docker-run run - Run a created docker contaner interactively\n"
 		echo
 
 	fi
@@ -226,11 +186,11 @@ simple_docker_run_run_usage() {
 # :command.usage
 simple_docker_run_remove_usage() {
 	if [[ -n $long_usage ]]; then
-		printf "simple-docker-run remove - Remove a created docker container\n"
+		printf "simple-docker-run remove - Remove a created docker contaner\n"
 		echo
 
 	else
-		printf "simple-docker-run remove - Remove a created docker container\n"
+		printf "simple-docker-run remove - Remove a created docker contaner\n"
 		echo
 
 	fi
@@ -451,14 +411,12 @@ simple_docker_run_create_command() {
 
 	get_container_image_name "${args[container_name]}"
 	SOURCE_IMAGE="${args[source_image]}"
-	DOCKER_RECIPE="${args[docker_recipe]}"
 
 	# Create temporary Dockerfile
 	TMP_DOCKERFILE="/tmp/simple_docker_run_$(date +%s)"
 	touch "$TMP_DOCKERFILE"
 
 	cat > "$TMP_DOCKERFILE" <<- EOF
-
 	FROM $SOURCE_IMAGE
 
 	# Label tells us which containers were created by this script
@@ -468,13 +426,6 @@ simple_docker_run_create_command() {
 	RUN apt-get install -y git fakeroot build-essential ncurses-dev \\
 			xz-utils libssl-dev bc flex libelf-dev bison gcc llvm clang curl \\
 			wget vim
-
-	EOF
-
-	# append docker recipe to the general recipe we have above
-	[ -e "$DOCKER_RECIPE" ] && cat "$DOCKER_RECIPE" >> "$TMP_DOCKERFILE"
-
-	cat >> "$TMP_DOCKERFILE" <<- EOF
 
 	RUN useradd --create-home --shell /bin/bash $CURRENT_USER
 	USER $CURRENT_USER
@@ -496,14 +447,6 @@ simple_docker_run_create_command() {
 	docker run --name $CONTAINER_NAME --tty --interactive \
 			-v "$CURRENT_PATH:/home/$CURRENT_USER/$CURRENT_DIRECTORY" \
 			$IMAGE_NAME
-
-}
-
-# :command.function
-simple_docker_run_list_command() {
-	# src/list_command.sh
-	echo "Avaliable containers:"
-	docker container ls
 
 }
 
@@ -548,14 +491,9 @@ simple_docker_run_uninstall_command() {
 	# src/uninstall_command.sh
 
 	# Script will remove itself
-	SCRIPT_NAME="simple-docker-run"
-	SCRIPT_PATH="$(pwd)/$SCRIPT_NAME"
-	SCRIPT_SYMLINK="$HOME/.local/bin/$SCRIPT_NAME"
 
-	if [ -e "$SCRIPT_SYMLINK" ]; then
-		rm $SCRIPT_SYMLINK
-		sed -i '/simple-docker-run completions/d' "$HOME/.bashrc"
-	fi
+	sed -i '/simple-docker-run completions/d' "$HOME/.bashrc"
+
 	trap script_uninstall_itself EXIT
 
 }
@@ -602,13 +540,6 @@ parse_requirements() {
 			action="create"
 			shift
 			simple_docker_run_create_parse_requirements "$@"
-			shift $#
-			;;
-
-		list)
-			action="list"
-			shift
-			simple_docker_run_list_parse_requirements "$@"
 			shift $#
 			;;
 
@@ -759,10 +690,6 @@ simple_docker_run_create_parse_requirements() {
 
 					args['source_image']=$1
 					shift
-				elif [[ -z ${args['docker_recipe']+x} ]]; then
-
-					args['docker_recipe']=$1
-					shift
 				else
 					printf "invalid argument: %s\n" "$key" >&2
 					exit 1
@@ -775,59 +702,13 @@ simple_docker_run_create_parse_requirements() {
 
 	# :command.required_args_filter
 	if [[ -z ${args['container_name']+x} ]]; then
-		printf "missing required argument: CONTAINER_NAME\nusage: simple-docker-run create CONTAINER_NAME SOURCE_IMAGE [DOCKER_RECIPE]\n" >&2
+		printf "missing required argument: CONTAINER_NAME\nusage: simple-docker-run create CONTAINER_NAME SOURCE_IMAGE\n" >&2
 		exit 1
 	fi
 	if [[ -z ${args['source_image']+x} ]]; then
-		printf "missing required argument: SOURCE_IMAGE\nusage: simple-docker-run create CONTAINER_NAME SOURCE_IMAGE [DOCKER_RECIPE]\n" >&2
+		printf "missing required argument: SOURCE_IMAGE\nusage: simple-docker-run create CONTAINER_NAME SOURCE_IMAGE\n" >&2
 		exit 1
 	fi
-
-}
-
-# :command.parse_requirements
-simple_docker_run_list_parse_requirements() {
-	# :command.fixed_flags_filter
-	while [[ $# -gt 0 ]]; do
-		case "${1:-}" in
-			--help | -h)
-				long_usage=yes
-				simple_docker_run_list_usage
-				exit
-				;;
-
-			*)
-				break
-				;;
-
-		esac
-	done
-
-	# :command.dependencies_filter
-
-	# :command.command_filter
-	action="list"
-
-	# :command.parse_requirements_while
-	while [[ $# -gt 0 ]]; do
-		key="$1"
-		case "$key" in
-
-			-?*)
-				printf "invalid option: %s\n" "$key" >&2
-				exit 1
-				;;
-
-			*)
-				# :command.parse_requirements_case
-				# :command.parse_requirements_case_simple
-				printf "invalid argument: %s\n" "$key" >&2
-				exit 1
-
-				;;
-
-		esac
-	done
 
 }
 
@@ -999,7 +880,7 @@ simple_docker_run_uninstall_parse_requirements() {
 
 # :command.initialize
 initialize() {
-	version="1.0.0"
+	version="0.1.0"
 	long_usage=''
 	set -e
 
@@ -1035,15 +916,6 @@ run() {
 				simple_docker_run_create_usage
 			else
 				simple_docker_run_create_command
-			fi
-			;;
-
-		"list")
-			if [[ ${args['--help']:-} ]]; then
-				long_usage=yes
-				simple_docker_run_list_usage
-			else
-				simple_docker_run_list_command
 			fi
 			;;
 

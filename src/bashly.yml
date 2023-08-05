@@ -1,6 +1,6 @@
 name: simple-docker-run
 help: Script for easily creating/running/cleaning docker containers
-version: 1.0.0
+version: 0.1.0
 
 commands:
 - name: completions
@@ -9,7 +9,7 @@ commands:
     Usage: eval "\$(simple-docker-run completions)"
 
 - name: create
-  help: Create a docker container
+  help: Create a docker contaner
 
   args:
   - name: container_name
@@ -18,21 +18,12 @@ commands:
   - name: source_image
     required: true
     help: Base image to use
-  - name: docker_recipe
-    required: false
-    help: Docker recipe to use
 
   examples:
   - simple-docker-run create linux_builder debian:11
 
-- name: list
-  help: List available containers
-
-  examples:
-  - simple-docker-run list
-
 - name: run
-  help: Run a created docker container interactively
+  help: Run a created docker contaner interactively
 
   args:
   - name: container_name
@@ -49,7 +40,7 @@ commands:
   - simple-docker-run run linux_builder root
 
 - name: remove
-  help: Remove a created docker container
+  help: Remove a created docker contaner
 
   args:
   - name: container_name
