@@ -535,6 +535,8 @@ simple_docker_run_create_command() {
 	ENV LC_ALL en_US.UTF-8
 	ENV LANG en_US.UTF-8
 	ENV LANGUAGE en_US.UTF-8
+	ENV TERM xterm-256color
+	RUN userdel -r ubuntu || true
 	RUN useradd --create-home -u $CURRENT_UID --shell /bin/bash $CURRENT_USER
 	RUN echo "$CURRENT_USER:password123" | chpasswd
 	RUN usermod -aG sudo $CURRENT_USER
