@@ -5,6 +5,7 @@
 * Supports bash completion for easier use
 * Current directory ($PWD) automatically mounted inside the container
 * Keeps the same username and UID inside the container (permissions...)
+* Default user has access to sudo, password is "password123"
 
 Tested on Ubuntu, not sure how well other distros work.
 
