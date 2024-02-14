@@ -52,5 +52,5 @@ CURRENT_PATH="$(pwd)"
 CURRENT_DIRECTORY="$(basename $CURRENT_PATH)"
 
 docker run --name $CONTAINER_NAME --tty --interactive \
-    -v "$CURRENT_PATH:/home/$CURRENT_USER/$CURRENT_DIRECTORY" \
+    -v "$CURRENT_PATH:$CURRENT_PATH" \
     $IMAGE_NAME
