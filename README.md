@@ -25,17 +25,19 @@ simple-docker-run create openwrt-build-container ubuntu:22.04
 ```
 simple-docker-run run $CONTAINER_NAME
 # Example:
-simple-docker-run rune openwrt-build-container
+simple-docker-run run openwrt-build-container
 ```
 - Attach to running container as another user:
 ```
 simple-docker-run run $CONTAINER_NAME $USER
 # Example:
-simple-docker-run run $CONTAINER_NAME root
+simple-docker-run run openwrt-build-container root
 ```
 - Once you are done, clean all related Docker files using:
 ```
 simple-docker-run remove $CONTAINER_NAME
+# Example:
+simple-docker-run remove openwrt-build-container
 ```
 - If you update source code, run the following commands to update the script:
 ```
