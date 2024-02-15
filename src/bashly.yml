@@ -1,4 +1,4 @@
-name: simple-docker-run
+name: simple-dev-containers
 help: Script for easily creating/running/cleaning docker containers
 version: 0.1.0
 
@@ -6,7 +6,7 @@ commands:
 - name: completions
   help: |-
     Generate bash completions
-    Usage: eval "\$(simple-docker-run completions)"
+    Usage: eval "\$(simple-dev-containers completions)"
 
 - name: create
   help: Create a docker container
@@ -23,13 +23,13 @@ commands:
     help: Docker commands to add to the base recipe
 
   examples:
-  - simple-docker-run create linux_builder debian:11
+  - simple-dev-containers create linux_builder debian:11
 
 - name: list
   help: List available containers
 
   examples:
-  - simple-docker-run list
+  - simple-dev-containers list
 
 - name: run
   help: Run a created docker container interactively
@@ -45,8 +45,8 @@ commands:
   - $(docker ps -a --filter "label=simple_docker_run" --format '{{.Names}}' 2> /dev/null)
 
   examples:
-  - simple-docker-run run linux_builder
-  - simple-docker-run run linux_builder root
+  - simple-dev-containers run linux_builder
+  - simple-dev-containers run linux_builder root
 
 - name: remove
   help: Remove a created docker container
@@ -60,16 +60,16 @@ commands:
   - $(docker ps -a --filter "label=simple_docker_run" --format '{{.Names}}' 2> /dev/null)
 
   examples:
-  - simple-docker-run remove linux_builder
+  - simple-dev-containers remove linux_builder
 
 - name: uninstall
   help: Uninstall this script
 
   examples:
-  - simple-docker-run uninstall
+  - simple-dev-containers uninstall
 
 - name: update
   help: Update this script
 
   examples:
-  - simple-docker-run update
+  - simple-dev-containers update

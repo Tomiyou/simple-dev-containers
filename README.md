@@ -13,9 +13,9 @@ Tested on Ubuntu, not sure how well other distros work.
 
 - Spin up Docker image in seconds as the current user by running:
 ```
-simple-docker-run create $CONTAINER_NAME $BASE_IMAGE
+simple-dev-containers create $CONTAINER_NAME $BASE_IMAGE
 # Example:
-simple-docker-run create openwrt-build-container ubuntu:22.04
+simple-dev-containers create openwrt-build-container ubuntu:22.04
 ```
 - Script automatically mounts the current directory under the same path:
 ```
@@ -23,21 +23,21 @@ simple-docker-run create openwrt-build-container ubuntu:22.04
 ```
 - Run the container using:
 ```
-simple-docker-run run $CONTAINER_NAME
+simple-dev-containers run $CONTAINER_NAME
 # Example:
-simple-docker-run run openwrt-build-container
+simple-dev-containers run openwrt-build-container
 ```
 - Attach to running container as another user:
 ```
-simple-docker-run run $CONTAINER_NAME $USER
+simple-dev-containers run $CONTAINER_NAME $USER
 # Example:
-simple-docker-run run openwrt-build-container root
+simple-dev-containers run openwrt-build-container root
 ```
 - Once you are done, clean all related Docker files using:
 ```
-simple-docker-run remove $CONTAINER_NAME
+simple-dev-containers remove $CONTAINER_NAME
 # Example:
-simple-docker-run remove openwrt-build-container
+simple-dev-containers remove openwrt-build-container
 ```
 - If you update source code, run the following commands to update the script:
 ```
@@ -51,11 +51,11 @@ Install the script using the following command:
 ```
 curl https://raw.githubusercontent.com/Tomiyou/docker_image_runner/master/install.sh | bash
 ```
-The script is installed under `$HOME/.local/bin/simple-docker-run`
+The script is installed under `$HOME/.local/bin/simple-dev-containers`
 
 ## Uninstall
 
 Uninstall the script using the following command:
 ```
-simple-docker-run uninstall
+simple-dev-containers uninstall
 ```

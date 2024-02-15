@@ -16,21 +16,21 @@ version_command() {
 }
 
 # :command.usage
-simple_docker_run_usage() {
+simple_dev_containers_usage() {
 	if [[ -n $long_usage ]]; then
-		printf "simple-docker-run - Script for easily creating/running/cleaning docker containers\n"
+		printf "simple-dev-containers - Script for easily creating/running/cleaning docker containers\n"
 		echo
 
 	else
-		printf "simple-docker-run - Script for easily creating/running/cleaning docker containers\n"
+		printf "simple-dev-containers - Script for easily creating/running/cleaning docker containers\n"
 		echo
 
 	fi
 
 	printf "%s\n" "Usage:"
-	printf "  simple-docker-run COMMAND\n"
-	printf "  simple-docker-run [COMMAND] --help | -h\n"
-	printf "  simple-docker-run --version | -v\n"
+	printf "  simple-dev-containers COMMAND\n"
+	printf "  simple-dev-containers [COMMAND] --help | -h\n"
+	printf "  simple-dev-containers --version | -v\n"
 	echo
 	# :command.usage_commands
 	printf "%s\n" "Commands:"
@@ -59,23 +59,23 @@ simple_docker_run_usage() {
 }
 
 # :command.usage
-simple_docker_run_completions_usage() {
+simple_dev_containers_completions_usage() {
 	if [[ -n $long_usage ]]; then
-		printf "simple-docker-run completions\n"
+		printf "simple-dev-containers completions\n"
 		echo
 
-		printf "  Generate bash completions\n  Usage: eval \"\$(simple-docker-run completions)\"\n"
+		printf "  Generate bash completions\n  Usage: eval \"\$(simple-dev-containers completions)\"\n"
 		echo
 
 	else
-		printf "simple-docker-run completions - Generate bash completions\n"
+		printf "simple-dev-containers completions - Generate bash completions\n"
 		echo
 
 	fi
 
 	printf "%s\n" "Usage:"
-	printf "  simple-docker-run completions\n"
-	printf "  simple-docker-run completions --help | -h\n"
+	printf "  simple-dev-containers completions\n"
+	printf "  simple-dev-containers completions --help | -h\n"
 	echo
 
 	# :command.long_usage
@@ -91,20 +91,20 @@ simple_docker_run_completions_usage() {
 }
 
 # :command.usage
-simple_docker_run_create_usage() {
+simple_dev_containers_create_usage() {
 	if [[ -n $long_usage ]]; then
-		printf "simple-docker-run create - Create a docker container\n"
+		printf "simple-dev-containers create - Create a docker container\n"
 		echo
 
 	else
-		printf "simple-docker-run create - Create a docker container\n"
+		printf "simple-dev-containers create - Create a docker container\n"
 		echo
 
 	fi
 
 	printf "%s\n" "Usage:"
-	printf "  simple-docker-run create CONTAINER_NAME SOURCE_IMAGE [DOCKER_RECIPE]\n"
-	printf "  simple-docker-run create --help | -h\n"
+	printf "  simple-dev-containers create CONTAINER_NAME SOURCE_IMAGE [DOCKER_RECIPE]\n"
+	printf "  simple-dev-containers create --help | -h\n"
 	echo
 
 	# :command.long_usage
@@ -136,27 +136,27 @@ simple_docker_run_create_usage() {
 
 		# :command.usage_examples
 		printf "%s\n" "Examples:"
-		printf "  simple-docker-run create linux_builder debian:11\n"
+		printf "  simple-dev-containers create linux_builder debian:11\n"
 		echo
 
 	fi
 }
 
 # :command.usage
-simple_docker_run_list_usage() {
+simple_dev_containers_list_usage() {
 	if [[ -n $long_usage ]]; then
-		printf "simple-docker-run list - List available containers\n"
+		printf "simple-dev-containers list - List available containers\n"
 		echo
 
 	else
-		printf "simple-docker-run list - List available containers\n"
+		printf "simple-dev-containers list - List available containers\n"
 		echo
 
 	fi
 
 	printf "%s\n" "Usage:"
-	printf "  simple-docker-run list\n"
-	printf "  simple-docker-run list --help | -h\n"
+	printf "  simple-dev-containers list\n"
+	printf "  simple-dev-containers list --help | -h\n"
 	echo
 
 	# :command.long_usage
@@ -170,27 +170,27 @@ simple_docker_run_list_usage() {
 
 		# :command.usage_examples
 		printf "%s\n" "Examples:"
-		printf "  simple-docker-run list\n"
+		printf "  simple-dev-containers list\n"
 		echo
 
 	fi
 }
 
 # :command.usage
-simple_docker_run_run_usage() {
+simple_dev_containers_run_usage() {
 	if [[ -n $long_usage ]]; then
-		printf "simple-docker-run run - Run a created docker container interactively\n"
+		printf "simple-dev-containers run - Run a created docker container interactively\n"
 		echo
 
 	else
-		printf "simple-docker-run run - Run a created docker container interactively\n"
+		printf "simple-dev-containers run - Run a created docker container interactively\n"
 		echo
 
 	fi
 
 	printf "%s\n" "Usage:"
-	printf "  simple-docker-run run CONTAINER_NAME [USER]\n"
-	printf "  simple-docker-run run --help | -h\n"
+	printf "  simple-dev-containers run CONTAINER_NAME [USER]\n"
+	printf "  simple-dev-containers run --help | -h\n"
 	echo
 
 	# :command.long_usage
@@ -217,28 +217,28 @@ simple_docker_run_run_usage() {
 
 		# :command.usage_examples
 		printf "%s\n" "Examples:"
-		printf "  simple-docker-run run linux_builder\n"
-		printf "  simple-docker-run run linux_builder root\n"
+		printf "  simple-dev-containers run linux_builder\n"
+		printf "  simple-dev-containers run linux_builder root\n"
 		echo
 
 	fi
 }
 
 # :command.usage
-simple_docker_run_remove_usage() {
+simple_dev_containers_remove_usage() {
 	if [[ -n $long_usage ]]; then
-		printf "simple-docker-run remove - Remove a created docker container\n"
+		printf "simple-dev-containers remove - Remove a created docker container\n"
 		echo
 
 	else
-		printf "simple-docker-run remove - Remove a created docker container\n"
+		printf "simple-dev-containers remove - Remove a created docker container\n"
 		echo
 
 	fi
 
 	printf "%s\n" "Usage:"
-	printf "  simple-docker-run remove CONTAINER_NAME\n"
-	printf "  simple-docker-run remove --help | -h\n"
+	printf "  simple-dev-containers remove CONTAINER_NAME\n"
+	printf "  simple-dev-containers remove --help | -h\n"
 	echo
 
 	# :command.long_usage
@@ -260,27 +260,27 @@ simple_docker_run_remove_usage() {
 
 		# :command.usage_examples
 		printf "%s\n" "Examples:"
-		printf "  simple-docker-run remove linux_builder\n"
+		printf "  simple-dev-containers remove linux_builder\n"
 		echo
 
 	fi
 }
 
 # :command.usage
-simple_docker_run_uninstall_usage() {
+simple_dev_containers_uninstall_usage() {
 	if [[ -n $long_usage ]]; then
-		printf "simple-docker-run uninstall - Uninstall this script\n"
+		printf "simple-dev-containers uninstall - Uninstall this script\n"
 		echo
 
 	else
-		printf "simple-docker-run uninstall - Uninstall this script\n"
+		printf "simple-dev-containers uninstall - Uninstall this script\n"
 		echo
 
 	fi
 
 	printf "%s\n" "Usage:"
-	printf "  simple-docker-run uninstall\n"
-	printf "  simple-docker-run uninstall --help | -h\n"
+	printf "  simple-dev-containers uninstall\n"
+	printf "  simple-dev-containers uninstall --help | -h\n"
 	echo
 
 	# :command.long_usage
@@ -294,27 +294,27 @@ simple_docker_run_uninstall_usage() {
 
 		# :command.usage_examples
 		printf "%s\n" "Examples:"
-		printf "  simple-docker-run uninstall\n"
+		printf "  simple-dev-containers uninstall\n"
 		echo
 
 	fi
 }
 
 # :command.usage
-simple_docker_run_update_usage() {
+simple_dev_containers_update_usage() {
 	if [[ -n $long_usage ]]; then
-		printf "simple-docker-run update - Update this script\n"
+		printf "simple-dev-containers update - Update this script\n"
 		echo
 
 	else
-		printf "simple-docker-run update - Update this script\n"
+		printf "simple-dev-containers update - Update this script\n"
 		echo
 
 	fi
 
 	printf "%s\n" "Usage:"
-	printf "  simple-docker-run update\n"
-	printf "  simple-docker-run update --help | -h\n"
+	printf "  simple-dev-containers update\n"
+	printf "  simple-dev-containers update --help | -h\n"
 	echo
 
 	# :command.long_usage
@@ -328,7 +328,7 @@ simple_docker_run_update_usage() {
 
 		# :command.usage_examples
 		printf "%s\n" "Examples:"
-		printf "  simple-docker-run update\n"
+		printf "  simple-dev-containers update\n"
 		echo
 
 	fi
@@ -403,25 +403,25 @@ function script_uninstall_itself {
 
 # src/lib/script_update_itself.sh
 SCRIPT_BASE_DIR="$HOME/.local/bin"
-SCRIPT_PATH="$SCRIPT_BASE_DIR/simple-docker-run"
+SCRIPT_PATH="$SCRIPT_BASE_DIR/simple-dev-containers"
 
 function script_update_itself {
 		# Download script and place it into local bin
 		mkdir -p "$SCRIPT_BASE_DIR"
-		curl https://raw.githubusercontent.com/Tomiyou/docker_image_runner/master/simple-docker-run --output "$SCRIPT_PATH"
+		curl https://raw.githubusercontent.com/Tomiyou/docker_image_runner/master/simple-dev-containers --output "$SCRIPT_PATH"
 		chmod +x "$SCRIPT_PATH"
 		echo "Script updated"
 }
 
 # src/lib/send_completions.sh
 send_completions() {
-	echo $'# simple-docker-run completion                             -*- shell-script -*-'
+	echo $'# simple-dev-containers completion                         -*- shell-script -*-'
 	echo $''
 	echo $'# This bash completions script was generated by'
 	echo $'# completely (https://github.com/dannyben/completely)'
 	echo $'# Modifying it manually is not recommended'
 	echo $''
-	echo $'_simple-docker-run_completions_filter() {'
+	echo $'_simple-dev-containers_completions_filter() {'
 	echo $'  local words="$1"'
 	echo $'  local cur=${COMP_WORDS[COMP_CWORD]}'
 	echo $'  local result=()'
@@ -439,54 +439,54 @@ send_completions() {
 	echo $'  fi'
 	echo $'}'
 	echo $''
-	echo $'_simple-docker-run_completions() {'
+	echo $'_simple-dev-containers_completions() {'
 	echo $'  local cur=${COMP_WORDS[COMP_CWORD]}'
 	echo $'  local compwords=("${COMP_WORDS[@]:1:$COMP_CWORD-1}")'
 	echo $'  local compline="${compwords[*]}"'
 	echo $''
 	echo $'  case "$compline" in'
 	echo $'    \'completions\'*)'
-	echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-docker-run_completions_filter "--help -h")" -- "$cur" )'
+	echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-dev-containers_completions_filter "--help -h")" -- "$cur" )'
 	echo $'      ;;'
 	echo $''
 	echo $'    \'uninstall\'*)'
-	echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-docker-run_completions_filter "--help -h")" -- "$cur" )'
+	echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-dev-containers_completions_filter "--help -h")" -- "$cur" )'
 	echo $'      ;;'
 	echo $''
 	echo $'    \'create\'*)'
-	echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-docker-run_completions_filter "--help -h")" -- "$cur" )'
+	echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-dev-containers_completions_filter "--help -h")" -- "$cur" )'
 	echo $'      ;;'
 	echo $''
 	echo $'    \'remove\'*)'
-	echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-docker-run_completions_filter "$(docker ps -a --filter "label=simple_docker_run" --format \'{{.Names}}\' 2> /dev/null) --help -h")" -- "$cur" )'
+	echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-dev-containers_completions_filter "$(docker ps -a --filter "label=simple_docker_run" --format \'{{.Names}}\' 2> /dev/null) --help -h")" -- "$cur" )'
 	echo $'      ;;'
 	echo $''
 	echo $'    \'update\'*)'
-	echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-docker-run_completions_filter "--help -h")" -- "$cur" )'
+	echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-dev-containers_completions_filter "--help -h")" -- "$cur" )'
 	echo $'      ;;'
 	echo $''
 	echo $'    \'list\'*)'
-	echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-docker-run_completions_filter "--help -h")" -- "$cur" )'
+	echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-dev-containers_completions_filter "--help -h")" -- "$cur" )'
 	echo $'      ;;'
 	echo $''
 	echo $'    \'run\'*)'
-	echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-docker-run_completions_filter "$(docker ps -a --filter "label=simple_docker_run" --format \'{{.Names}}\' 2> /dev/null) --help -h")" -- "$cur" )'
+	echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-dev-containers_completions_filter "$(docker ps -a --filter "label=simple_docker_run" --format \'{{.Names}}\' 2> /dev/null) --help -h")" -- "$cur" )'
 	echo $'      ;;'
 	echo $''
 	echo $'    *)'
-	echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-docker-run_completions_filter "--help --version -h -v completions create list remove run uninstall update")" -- "$cur" )'
+	echo $'      while read -r; do COMPREPLY+=( "$REPLY" ); done < <( compgen -W "$(_simple-dev-containers_completions_filter "--help --version -h -v completions create list remove run uninstall update")" -- "$cur" )'
 	echo $'      ;;'
 	echo $''
 	echo $'  esac'
 	echo $'} &&'
-	echo $'complete -F _simple-docker-run_completions simple-docker-run'
+	echo $'complete -F _simple-dev-containers_completions simple-dev-containers'
 	echo $''
 	echo $'# ex: filetype=sh'
 }
 
 # :command.command_functions
 # :command.function
-simple_docker_run_completions_command() {
+simple_dev_containers_completions_command() {
 	# src/completions_command.sh
 	# Call the `send_completions` function which was added by running:
 	#
@@ -494,14 +494,14 @@ simple_docker_run_completions_command() {
 	#
 	# Users can now enable bash completion for this script by running:
 	#
-	#   $ eval "$(simple-docker-run completions)"
+	#   $ eval "$(simple-dev-containers completions)"
 	#
 	send_completions
 
 }
 
 # :command.function
-simple_docker_run_create_command() {
+simple_dev_containers_create_command() {
 	# src/create_command.sh
 
 	get_container_image_name "${args[container_name]}"
@@ -563,7 +563,7 @@ simple_docker_run_create_command() {
 }
 
 # :command.function
-simple_docker_run_list_command() {
+simple_dev_containers_list_command() {
 	# src/list_command.sh
 	echo "Avaliable containers:"
 	docker ps -a --filter "label=simple_docker_run" --format '{{.Names}}'
@@ -571,7 +571,7 @@ simple_docker_run_list_command() {
 }
 
 # :command.function
-simple_docker_run_run_command() {
+simple_dev_containers_run_command() {
 	# src/run_command.sh
 
 	get_container_image_name "${args[container_name]}"
@@ -593,7 +593,7 @@ simple_docker_run_run_command() {
 }
 
 # :command.function
-simple_docker_run_remove_command() {
+simple_dev_containers_remove_command() {
 	# src/remove_command.sh
 
 	get_container_image_name "${args[container_name]}"
@@ -607,19 +607,19 @@ simple_docker_run_remove_command() {
 }
 
 # :command.function
-simple_docker_run_uninstall_command() {
+simple_dev_containers_uninstall_command() {
 	# src/uninstall_command.sh
 
 	# Script will remove itself
 
-	sed -i '/simple-docker-run completions/d' "$HOME/.bashrc"
+	sed -i '/simple-dev-containers completions/d' "$HOME/.bashrc"
 
 	trap script_uninstall_itself EXIT
 
 }
 
 # :command.function
-simple_docker_run_update_command() {
+simple_dev_containers_update_command() {
 	# src/update_command.sh
 
 	# Script will update itself
@@ -640,7 +640,7 @@ parse_requirements() {
 
 			--help | -h)
 				long_usage=yes
-				simple_docker_run_usage
+				simple_dev_containers_usage
 				exit
 				;;
 
@@ -660,55 +660,55 @@ parse_requirements() {
 		completions)
 			action="completions"
 			shift
-			simple_docker_run_completions_parse_requirements "$@"
+			simple_dev_containers_completions_parse_requirements "$@"
 			shift $#
 			;;
 
 		create)
 			action="create"
 			shift
-			simple_docker_run_create_parse_requirements "$@"
+			simple_dev_containers_create_parse_requirements "$@"
 			shift $#
 			;;
 
 		list)
 			action="list"
 			shift
-			simple_docker_run_list_parse_requirements "$@"
+			simple_dev_containers_list_parse_requirements "$@"
 			shift $#
 			;;
 
 		run)
 			action="run"
 			shift
-			simple_docker_run_run_parse_requirements "$@"
+			simple_dev_containers_run_parse_requirements "$@"
 			shift $#
 			;;
 
 		remove)
 			action="remove"
 			shift
-			simple_docker_run_remove_parse_requirements "$@"
+			simple_dev_containers_remove_parse_requirements "$@"
 			shift $#
 			;;
 
 		uninstall)
 			action="uninstall"
 			shift
-			simple_docker_run_uninstall_parse_requirements "$@"
+			simple_dev_containers_uninstall_parse_requirements "$@"
 			shift $#
 			;;
 
 		update)
 			action="update"
 			shift
-			simple_docker_run_update_parse_requirements "$@"
+			simple_dev_containers_update_parse_requirements "$@"
 			shift $#
 			;;
 
 		# :command.command_fallback
 		"")
-			simple_docker_run_usage >&2
+			simple_dev_containers_usage >&2
 			exit 1
 			;;
 
@@ -743,13 +743,13 @@ parse_requirements() {
 }
 
 # :command.parse_requirements
-simple_docker_run_completions_parse_requirements() {
+simple_dev_containers_completions_parse_requirements() {
 	# :command.fixed_flags_filter
 	while [[ $# -gt 0 ]]; do
 		case "${1:-}" in
 			--help | -h)
 				long_usage=yes
-				simple_docker_run_completions_usage
+				simple_dev_containers_completions_usage
 				exit
 				;;
 
@@ -787,13 +787,13 @@ simple_docker_run_completions_parse_requirements() {
 }
 
 # :command.parse_requirements
-simple_docker_run_create_parse_requirements() {
+simple_dev_containers_create_parse_requirements() {
 	# :command.fixed_flags_filter
 	while [[ $# -gt 0 ]]; do
 		case "${1:-}" in
 			--help | -h)
 				long_usage=yes
-				simple_docker_run_create_usage
+				simple_dev_containers_create_usage
 				exit
 				;;
 
@@ -844,24 +844,24 @@ simple_docker_run_create_parse_requirements() {
 
 	# :command.required_args_filter
 	if [[ -z ${args['container_name']+x} ]]; then
-		printf "missing required argument: CONTAINER_NAME\nusage: simple-docker-run create CONTAINER_NAME SOURCE_IMAGE [DOCKER_RECIPE]\n" >&2
+		printf "missing required argument: CONTAINER_NAME\nusage: simple-dev-containers create CONTAINER_NAME SOURCE_IMAGE [DOCKER_RECIPE]\n" >&2
 		exit 1
 	fi
 	if [[ -z ${args['source_image']+x} ]]; then
-		printf "missing required argument: SOURCE_IMAGE\nusage: simple-docker-run create CONTAINER_NAME SOURCE_IMAGE [DOCKER_RECIPE]\n" >&2
+		printf "missing required argument: SOURCE_IMAGE\nusage: simple-dev-containers create CONTAINER_NAME SOURCE_IMAGE [DOCKER_RECIPE]\n" >&2
 		exit 1
 	fi
 
 }
 
 # :command.parse_requirements
-simple_docker_run_list_parse_requirements() {
+simple_dev_containers_list_parse_requirements() {
 	# :command.fixed_flags_filter
 	while [[ $# -gt 0 ]]; do
 		case "${1:-}" in
 			--help | -h)
 				long_usage=yes
-				simple_docker_run_list_usage
+				simple_dev_containers_list_usage
 				exit
 				;;
 
@@ -899,13 +899,13 @@ simple_docker_run_list_parse_requirements() {
 }
 
 # :command.parse_requirements
-simple_docker_run_run_parse_requirements() {
+simple_dev_containers_run_parse_requirements() {
 	# :command.fixed_flags_filter
 	while [[ $# -gt 0 ]]; do
 		case "${1:-}" in
 			--help | -h)
 				long_usage=yes
-				simple_docker_run_run_usage
+				simple_dev_containers_run_usage
 				exit
 				;;
 
@@ -952,20 +952,20 @@ simple_docker_run_run_parse_requirements() {
 
 	# :command.required_args_filter
 	if [[ -z ${args['container_name']+x} ]]; then
-		printf "missing required argument: CONTAINER_NAME\nusage: simple-docker-run run CONTAINER_NAME [USER]\n" >&2
+		printf "missing required argument: CONTAINER_NAME\nusage: simple-dev-containers run CONTAINER_NAME [USER]\n" >&2
 		exit 1
 	fi
 
 }
 
 # :command.parse_requirements
-simple_docker_run_remove_parse_requirements() {
+simple_dev_containers_remove_parse_requirements() {
 	# :command.fixed_flags_filter
 	while [[ $# -gt 0 ]]; do
 		case "${1:-}" in
 			--help | -h)
 				long_usage=yes
-				simple_docker_run_remove_usage
+				simple_dev_containers_remove_usage
 				exit
 				;;
 
@@ -1008,20 +1008,20 @@ simple_docker_run_remove_parse_requirements() {
 
 	# :command.required_args_filter
 	if [[ -z ${args['container_name']+x} ]]; then
-		printf "missing required argument: CONTAINER_NAME\nusage: simple-docker-run remove CONTAINER_NAME\n" >&2
+		printf "missing required argument: CONTAINER_NAME\nusage: simple-dev-containers remove CONTAINER_NAME\n" >&2
 		exit 1
 	fi
 
 }
 
 # :command.parse_requirements
-simple_docker_run_uninstall_parse_requirements() {
+simple_dev_containers_uninstall_parse_requirements() {
 	# :command.fixed_flags_filter
 	while [[ $# -gt 0 ]]; do
 		case "${1:-}" in
 			--help | -h)
 				long_usage=yes
-				simple_docker_run_uninstall_usage
+				simple_dev_containers_uninstall_usage
 				exit
 				;;
 
@@ -1059,13 +1059,13 @@ simple_docker_run_uninstall_parse_requirements() {
 }
 
 # :command.parse_requirements
-simple_docker_run_update_parse_requirements() {
+simple_dev_containers_update_parse_requirements() {
 	# :command.fixed_flags_filter
 	while [[ $# -gt 0 ]]; do
 		case "${1:-}" in
 			--help | -h)
 				long_usage=yes
-				simple_docker_run_update_usage
+				simple_dev_containers_update_usage
 				exit
 				;;
 
@@ -1112,7 +1112,7 @@ initialize() {
 
 	CURRENT_USER="$(whoami)"
 	CURRENT_UID="$(id -u)"
-	SCRIPT_PATH="$HOME/.local/bin/simple-docker-run"
+	SCRIPT_PATH="$HOME/.local/bin/simple-dev-containers"
 
 }
 
@@ -1126,13 +1126,13 @@ run() {
 	parse_requirements "${input[@]}"
 
 	case "$action" in
-		"completions") simple_docker_run_completions_command ;;
-		"create") simple_docker_run_create_command ;;
-		"list") simple_docker_run_list_command ;;
-		"run") simple_docker_run_run_command ;;
-		"remove") simple_docker_run_remove_command ;;
-		"uninstall") simple_docker_run_uninstall_command ;;
-		"update") simple_docker_run_update_command ;;
+		"completions") simple_dev_containers_completions_command ;;
+		"create") simple_dev_containers_create_command ;;
+		"list") simple_dev_containers_list_command ;;
+		"run") simple_dev_containers_run_command ;;
+		"remove") simple_dev_containers_remove_command ;;
+		"uninstall") simple_dev_containers_uninstall_command ;;
+		"update") simple_dev_containers_update_command ;;
 	esac
 }
 
