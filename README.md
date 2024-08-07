@@ -39,11 +39,6 @@ simple-dev-containers remove $CONTAINER_NAME
 # Example:
 simple-dev-containers remove openwrt-build-container
 ```
-- If you update source code, run the following commands to update the script:
-```
-bashly generate
-bashly generate --upgrade
-```
 
 ## Installation
 
@@ -58,4 +53,16 @@ The script is installed under `$HOME/.local/bin/simple-dev-containers`
 Uninstall the script using the following command:
 ```
 simple-dev-containers uninstall
+```
+
+## How to build script from source
+
+To build the script from source we need Bashly, which is a CLI that lets you generate feature-rich bash command line tools.
+```
+alias bashly='docker run --rm -it --user $(id -u):$(id -g) --volume "$PWD:/app" dannyben/bashly'
+```
+Then simply run
+```
+bashly generate
+bashly generate --upgrade
 ```
